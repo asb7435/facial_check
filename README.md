@@ -23,17 +23,20 @@ Flask, OpenCV, dlib을 사용한 얼굴 인식 출결 관리 시스템입니다.
 ```bash
 git clone https://github.com/your-username/face-recognition-attendance-system.git
 cd face-recognition-attendance-system
+```
 
 2. 가상 환경을 생성하고 활성화합니다:
 
 ```python
 python -m venv venv
 source venv/bin/activate  # Windows의 경우 `venv\Scripts\activate`
+```
 
 3. 필요한 패키지를 설치합니다:
 
 ```bash
 pip install -r requirements.txt
+```
 
 4. 필요한 dlib 모델을 다운로드하여 프로젝트 디렉토리에 배치합니다:
 shape_predictor_68_face_landmarks.dat
@@ -44,6 +47,7 @@ dlib_face_recognition_resnet_model_v1.dat
 
 ```bash
 python app.py
+```
 
 2. 웹 브라우저를 열고 http://127.0.0.1:5000으로 이동합니다.
 
@@ -82,7 +86,7 @@ face-recognition-attendance-system/
 ├── requirements.txt         # 필요한 패키지 목록 파일
 ├── README.md                # 프로젝트 설명 파일
 └── ...                      # 기타 파일 및 디렉토리
-
+```
 
 #### 코드 개요
 ##### app.py
