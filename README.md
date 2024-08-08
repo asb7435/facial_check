@@ -39,8 +39,8 @@ pip install -r requirements.txt
 ```
 
 4. 필요한 dlib 모델을 다운로드하여 프로젝트 디렉토리에 배치합니다:
-shape_predictor_68_face_landmarks.dat
-dlib_face_recognition_resnet_model_v1.dat
+shape_predictor_68_face_landmarks.dat   
+dlib_face_recognition_resnet_model_v1.dat   
 
 ## 사용 방법
 1. Flask 애플리케이션을 실행합니다:
