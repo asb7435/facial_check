@@ -80,13 +80,10 @@ face-recognition-attendance-system/
 │   ├── member_logs.html     # 회원 출결 로그 페이지
 │   ├── today_logs.html      # 오늘의 출결 로그 페이지
 │
-├── static/                  # 정적 파일 (CSS, JS)
-│   ├── styles.css           # 사용자 스타일 파일
 │
 ├── requirements.txt         # 필요한 패키지 목록 파일
-├── README.md                # 프로젝트 설명 파일
-└── ...                      # 기타 파일 및 디렉토리
-```
+└──  README.md               # 프로젝트 설명 파일
+
 
 #### 코드 개요
 ##### app.py
