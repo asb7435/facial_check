@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Logs for User {{ user_id }}</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.time }}</td>
+            <td>{{ log.status }}</td>
+            <td>{{ log.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

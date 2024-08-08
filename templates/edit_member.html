@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-container">
+    </div>
+<h2>Edit Member</h2>
+{% if member.image %}
+<img src="data:image/png;base64,{{ member.image }}" alt="{{ member.id }}" width="200" height="200">
+{% else %}
+<p>No image available.</p>
+{% endif %}
+<button class="btn btn-primary mb-3" onclick="openCameraModal()"> <i class="fa fa-camera"></i> </button>
+<img id="capturedImage" style="display:none;" width="640" height="480" class="mb-3">
+<form>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" value="{{ member.name }}">
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="text" class="form-control" id="phone" value="{{ member.phone }}">
+    </div>
+    <div class="form-group">
+        <label for="gender">Gender</label>
+        <select class="form-control" id="gender">
+            <option value="male" {% if member.gender == 'male' %}selected{% endif %}>Male</option>
+            <option value="female" {% if member.gender == 'female' %}selected{% endif %}>Female</option>
+        </select>
+    </div>
+    <button type="button" class="btn btn-success" id="update">Update</button>
+</form>
+<canvas id="canvas" width="300" height="300" style="display:none;"></canvas>
+
+<!-- Camera Modal -->
+<div class="modal fade" id="cameraModal" tabindex="-1" role="dialog" aria-labelledby="cameraModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cameraModalLabel">Capture Photo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <video id="video" width="100%" height="100%" autoplay></video>
+                <img id="capturedImg" style="display:none;" width="100%" height="100%">
+                <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="recaptureButton" style="display:none;" onclick="recapture()">Recapture</button>
+                <button type="button" class="btn btn-primary" id="captureButton" onclick="capturePhoto()">Capture</button>
+                <button type="button" class="btn btn-success" id="completeButton" style="display:none;" onclick="completeCapture()">Complete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let capturedImage = '';
+
+    function openCameraModal() {
+        $('#cameraModal').modal('show');
+        const video = document.getElementById('video');
+        const capturedImg = document.getElementById('capturedImg');
+        const captureButton = document.getElementById('captureButton');
+        const recaptureButton = document.getElementById('recaptureButton');
+        const completeButton = document.getElementById('completeButton');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch((err) => {
+                console.error('Error accessing the camera: ' + err);
+                alert('Camera not connected. Please connect a camera and try again.');
+            });
+
+        captureButton.style.display = 'block';
+        recaptureButton.style.display = 'none';
+        completeButton.style.display = 'none';
+        capturedImg.style.display = 'none';
+    }
+
+    function capturePhoto() {
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const capturedImg = document.getElementById('capturedImg');
+        const captureButton = document.getElementById('captureButton');
+        const recaptureButton = document.getElementById('recaptureButton');
+        const completeButton = document.getElementById('completeButton');
+
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        capturedImage = canvas.toDataURL('image/png');
+        capturedImg.src = capturedImage;
+        capturedImg.style.display = 'block';
+        video.style.display = 'none';
+
+        captureButton.style.display = 'none';
+        recaptureButton.style.display = 'block';
+        completeButton.style.display = 'block';
+    }
+
+    function recapture() {
+        const video = document.getElementById('video');
+        const capturedImg = document.getElementById('capturedImg');
+        const captureButton = document.getElementById('captureButton');
+        const recaptureButton = document.getElementById('recaptureButton');
+        const completeButton = document.getElementById('completeButton');
+
+        video.style.display = 'block';
+        capturedImg.style.display = 'none';
+
+        captureButton.style.display = 'block';
+        recaptureButton.style.display = 'none';
+        completeButton.style.display = 'none';
+    }
+
+    function completeCapture() {
+        $('#cameraModal').modal('hide');
+        document.getElementById('capturedImage').src = capturedImage;
+        document.getElementById('capturedImage').style.display = 'block';
+    }
+
+    document.getElementById('update').addEventListener('click', function() {
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const gender = document.getElementById('gender').value;
+
+        if (!capturedImage) {
+            capturedImage = document.getElementById('currentImage').src;
+        }
+
+        fetch('/update_member', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: name, phone: phone, gender: gender, image: capturedImage })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            window.location.href = '/members';
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+{% endblock %}
