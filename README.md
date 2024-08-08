@@ -21,8 +21,8 @@ Flask, OpenCV, dlib을 사용한 얼굴 인식 출결 관리 시스템입니다.
 1. 저장소를 클론합니다:
 
 ```bash
-git clone https://github.com/your-username/face-recognition-attendance-system.git
-cd face-recognition-attendance-system
+git clone https://github.com/asb7435/facial_check.git
+cd facial_check
 ```
 
 2. 가상 환경을 생성하고 활성화합니다:
@@ -79,11 +79,9 @@ face-recognition-attendance-system/
 │   ├── edit_member.html     # 회원 정보 수정 페이지
 │   ├── member_logs.html     # 회원 출결 로그 페이지
 │   ├── today_logs.html      # 오늘의 출결 로그 페이지
-│
-│
 ├── requirements.txt         # 필요한 패키지 목록 파일
 └──  README.md               # 프로젝트 설명 파일
-
+```
 
 #### 코드 개요
 ##### app.py
