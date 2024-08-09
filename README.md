@@ -1,4 +1,4 @@
- # 얼굴 인식 출결 관리 시스템
+  # 얼굴 인식 출결 관리 시스템
 
 Flask, OpenCV, dlib을 사용한 얼굴 인식 출결 관리 시스템입니다. 이 시스템을 통해 회원을 등록하고, 회원 정보를 관리하며, 얼굴 인식을 통해 출결을 기록할 수 있습니다.
 
@@ -97,8 +97,8 @@ face-recognition-attendance-system/
 layout.html: 다른 템플릿들이 확장하는 기본 레이아웃.   
 index.html: 출근 및 퇴근을 수행하는 홈.    
 admin_login.html: 관리자 로그인.    
-members.html: 등록된 회원 목록.      
-register.html: 새로운 회원을 등록하는 페이지.
-edit_member.html: 회원 정보를 수정하는 페이지.
-member_logs.html: 특정 회원의 출결 로그를 조회하는 페이지.
-today_logs.html: 오늘의 출결 로그를 조회하는 페이지.
+members.html: 등록된 회원 목록.        
+register.html: 새로운 회원을 등록하는 페이지.      
+edit_member.html: 회원 정보를 수정하는 페이지.     
+member_logs.html: 특정 회원의 출결 로그를 조회하는 페이지.   
+today_logs.html: 오늘의 출결 로그를 조회하는 페이지.   
