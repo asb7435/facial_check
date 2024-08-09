@@ -94,10 +94,10 @@ face-recognition-attendance-system/
 이 파일에는 이미지를 처리하고 dlib과 OpenCV를 사용하여 얼굴 인식을 수행하는 함수가 포함되어 있습니다.
 
 ##### HTML 템플릿
-layout.html: 다른 템플릿들이 확장하는 기본 템플릿입니다.
-index.html: 출근 및 퇴근을 수행하는 홈 페이지입니다.
-admin_login.html: 관리자 로그인 페이지입니다.
-members.html: 등록된 회원 목록 페이지입니다.
+layout.html: 다른 템플릿들이 확장하는 기본 레이아웃.   
+index.html: 출근 및 퇴근을 수행하는 홈.    
+admin_login.html: 관리자 로그인.    
+members.html: 등록된 회원 목록.      
 register.html: 새로운 회원을 등록하는 페이지입니다.
 edit_member.html: 회원 정보를 수정하는 페이지입니다.
 member_logs.html: 특정 회원의 출결 로그를 조회하는 페이지입니다.
